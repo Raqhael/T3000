@@ -20,7 +20,10 @@
 	listof=totoc,		    % Show List of Figures/Tables in Contents
 	toc=bibliography,	    % Show Bibliography in Contents
 ]{scrreprt}	                     % Koma-Script report-class, long document: scrreprt, short document: scrbook
-
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\scr@startchapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
 \usepackage{xstring}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}

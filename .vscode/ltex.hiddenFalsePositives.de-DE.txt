@@ -1,0 +1,1 @@
+{"rule":"DE_CASE","sentence":"^\\QDies funktioniert jedoch, nur wenn: Das Prime-Framework richtig angewandt wird Einzelne Komponenten nicht an anderer Stelle\\E$"}

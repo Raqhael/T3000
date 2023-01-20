@@ -1,47 +1,37 @@
-%!TEX root = ../../main.tex
+\chapter{Einführung}
 
-\chapter{Das erste Kapitel}
-Dies ist der Text des ersten Kapitels.Nur erwähnte Literaturverweise werden auch im Literaturverzeichnis gedruckt: \cite[S.12 ff]{baumgartner:2002}, \cite[S.1-3]{dreyfus:1980}
+Die Komm.ONE entwickelte die letzten Jahre vor allem monolithische Anwendungen mit Java. Durch die Transformation zu einer moderneren Plattform die Containerisierung unterstützt bzw. darauf ausgelegt ist, sollen Anwendungen in einer Microservicearchitektur entwickelt werden. Als Pilotprojekt wird hierbei ein Modul der Anwendung WIBAS als Microservice implementiert und auf der neuen Plattform bereitgestellt.
 
-Meine erste Fußnote\footnote{Ich bin eine Fußnote} darf auch nicht fehlen. Fußnoten sind dazu da, dass man Begriffe näher erklärt, die aber dem vertrauten Leser wahrscheinlich eh bekannt sind. 
+Während die letzten Jahre die Anwendungen meist mithilfe von Java Webanwendungen (JSF/JSP) erstellt wurden, erhalten die modernisierten Anwendungen ein separates Frontend mithilfe eines JavaScript-Frameworks. Da viele Anwendungen neu geschrieben werden müssen, lohnt es sich Gedanken darüberzumachen wie die Frontend-Entwicklung nachhaltig und wiederverwendbar gestaltet werden kann.
 
-\begin{figure}[h]
-\centering
-\includegraphics[height=.8\textwidth]{logo.png}
-\caption{Das Logo der Musterfirma\footnotemark}
-\end{figure}
+In dieser Arbeit wird das Vorgehen und die Methodik beschrieben wie dies umgesetzt werden kann.
 
+\chapter{Verwendete Technologien}
 
+In der Neuentwicklung der Heimarbeit-Komponente wird im Frontend das Framework Angular (v14) verwendet. Angular ist ein komponentenbasiertes Frontend Typescript-Framework von Google welches Open-Source entwickelt wird \cite{angular.17.01.2023}. Es wird sehr stark davon ausgegangen, dass in Zukunft vermehrt Angular eingesetzt wird. Die einzigen momentan verfügbaren Open-Source alternativen wäre React oder Vue.
 
-%\begin{wrapfigure}{r}{.4\textwidth}
-%\centering
-%\includegraphics[height=.35\textwidth]{logo.png}
-%\vspace{-15pt}
-%\caption{Das Logo der Musterfirma\footnotemark}
-%\end{wrapfigure}
-%Quelle muss in Fußnote stehen (da sonst aufgrund eines Fehlers nicht kompiliert
-% wird)
-\footnotetext{aus \cite{mustermann:2012}}
-Looking for the one superhero comic you just have to read. Following the antics and adventures of May Mayday Parker, this Spider-book has everything you could want in a comic--action, laughs, mystery and someone in a Spidey suit. Collects Alias \#1-28, What If. Jessica Jones had Joined the Avengers. In her inaugural arc, Jessicas life immediately becomes expendable when she uncovers the potentially explosive secret of one heros true identity. In her inaugural arc, Jessicas life immediately becomes expendable when she uncovers the potentially explosive secret of one heros true identity.
+In älteren Anwendungen die meist mithilfe von JSF (Jakarta Server Faces) geschrieben wurden, ist das CSS-Framework \textit{Prime} zum Einsatz gekommen (Primefaces). Dieses existiert für verschiedenste Technologien, unter anderem für Angular, React und Vue.
 
-Manchmal braucht man auch Formeln. LaTeX hat einen sehr guten Formeleditor, der eigentlich selbsterklärend ist. Die Formeln weden automatisch nummeriert, aber man kann immer im Text mit einem Label wie Formel \ref{xyz} Bezug nehmen.
+Prime soll auch für kommende Anwendungen weiterverwendet werden, es soll jedoch darauf geachtet werden, dass das Design einheitlich ist. Hierfür wurde vor dem Projektstart ein neuer Styleguide für die Komm.ONE entwickelt, der das Corporate Design beachtet und moderner wirkt.
 
-\begin{equation}
-t-t_{0}=\sqrt{\frac{l}{g}}\int_{0}^{\varphi}{\frac{d\psi}{\sqrt{1-k^{2}\sin^{2} {\psi}}}} = \sqrt{\frac{l}{g}} F(k,\varphi)
-\label{xyz}
-\end{equation}
+Für die weitere Entwicklung kann davon ausgegangen werden, dass Prime weiterhin für ein Frontend-Framework eingesetzt wird und die Wiederverwendbarkeit soll auf der Ebene des CSS-Frameworks aufbauen. 
 
-Manchmal braucht man Aufzählungen, die man in einzelnenen Punkten aufführt.
+Ein wichtiges Tool hierfür ist das Themeing, welches Prime anbietet. Dabei ist die Grundstruktur und das Design des CSS-Frameworks voneinander getrennt und durch die Auswahl eines anderen Themes wird alles Grundlegende behalten, aber Abstände, Schriften und Farben werden angepasst. 
+
+Ein einfacher Schritt der Wiederverwendbarkeit, wäre es ein eigenes Komm.ONE-Theme \textbf{einmal} zu schreiben und dies in neuen und ggf. auch alten Anwendungen einzubinden. Dabei ist das Endergebnis identisch, egal ob nun Angular, React, Vue oder JSF verwendet wird.
+
+\chapter{Entwicklung eines Prime-Themes}
+
+Ein Theme in Prime ist letztendlich eine große CSS-Datei mit Regeln für alle Komponenten. Ein neues Theme muss dabei nicht von $0$ geschrieben werden, sondern es kann ein schon vorhandenes Theme verwendet werden. Diese finden sich, wenn primeng installiert wurde, unter: \lstinline|node_modules/primeng/resources/themes/**/theme.css|. Dabei stehen 33 Themes kostenlos zur Verfügung \cite{Primeng.20.01.2023}. 
+
+Um den Komm.ONE-Styleguide auf das Theme zu übertragen wurde zunächst im Projekt eine Demo-Seite erstellt. Auf dieser werden alle UI-Komponenten des Primeng-Frameworks gruppiert angezeigt. Um herauszufinden welche Styleklassen angepasst werden müssen, können mit den Entwicklertools im Browser die Abhängigkeiten nachgeschaut werden. Anschließend wurden die Klassen entsprechend der Stylevorgaben angepasst und im Ergebnis iterativ überprüft ob dieser mit den Vorgaben übereinstimmt und konsistent ist. 
+
+Das am Ende vorliegende Theme kann nun in jeder Prime Anwendung verwendet werden um den Basis-Stil von Komm.ONE zu übernehmen. Dies funktioniert jedoch, nur wenn:
 \begin{itemize}
-\item Dies ist der erste Punkt, der aufgeführt wird.
-\item Dies ist der zweite Punkt, der aufgeführt wird. Manchmal will man auch etwas \textbf{fett} oder \textit{kursiv} oder \textbf{\textit{beides in Kombination}}  drucken.
-\item Dies ist der dritte Punkt, der aufgeführt wird.
+    \setlength\itemsep{-1em}
+    \item Das Prime-Framework richtig angewandt wird.
+    \item Einzelne Komponenten nicht an anderer Stelle überschrieben werden
+    \item Anwendungsspezifische Styles angepasst werden. 
 \end{itemize}
 
-Once upon a time, Jessica Jones was a costumed super-hero, just not a very good one. First, a story where Wolverine and Hulk come together, and then Captain America and Cable meet up. In a city of Marvels, Jessica Jones never found her niche. The classic adventures of Spider-Man from the early days up until the 90s. Looking for the one superhero comic you just have to read. In her inaugural arc, Jessicas life immediately becomes expendable when she uncovers the potentially explosive secret of one heros true identity.
-
-Erste Erwähnung eines Akronyms wird als Fußnote angezeigt. Jede weitere wird
-nur verlinkt: \acf{AGPL}. \cite{fsf:2007}
-
-Verweise auf das Glossar: \gls{Glossareintrag}, \glspl{Glossareintrag}
-
+Das Theme bietet nur einen stilistischen Rahmen, aber ein Grundlayout (Header, Sidebar, Footer, etc.) ist in Prime nicht vorgegeben und muss selbstständig aufgebaut werden. Da diese jedoch statisch sind, kann das Layout und der Style aus der Styleguide-Dokumentation (\href{https://confluence.komm-one.net/display/GWR/Styleguide+1.0.1-alpha}{https://confluence.komm-one.net/display/GWR/Styleguide+1.0.1-alpha}) entnommen werden.
