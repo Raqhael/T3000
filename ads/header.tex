@@ -168,7 +168,28 @@
 
 % frequently used programing languages
 \lstloadlanguages{PHP,Python,Java,C,C++,bash}
-
+\lstdefinelanguage{JavaScript}{
+  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
+    new, return, this, typeof, var, void, while, with},
+  % Literals, primitive types, and reference types.
+  morekeywords=[2]{false, null, true, boolean, number, undefined,
+    Array, Boolean, Date, Math, Number, String, Object},
+  % Built-ins.
+  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape},
+  sensitive,
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morecomment=[s]{/**}{*/}, % JavaDoc style comments
+  morestring=[b]',
+  morestring=[b]"
+}[keywords, comments, strings]
+\lstalias[]{ES6}[ECMAScript2015]{JavaScript}
+\lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
+  morekeywords=[1]{await, async, case, catch, class, const, default, do,
+    enum, export, extends, finally, from, implements, import, instanceof,
+    let, static, super, switch, throw, try},
+  morestring=[b]` % Interpolation strings.
+}
 \listingsettings{}
 % Rename Listings
 \renewcommand\lstlistingname{\listingPhrase}

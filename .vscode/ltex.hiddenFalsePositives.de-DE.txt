@@ -1,1 +1,3 @@
 {"rule":"DE_CASE","sentence":"^\\QDies funktioniert jedoch, nur wenn: Das Prime-Framework richtig angewandt wird Einzelne Komponenten nicht an anderer Stelle\\E$"}
+{"rule":"SUBSTANTIVIERUNG_NACH_DURCH","sentence":"^\\QHierbei wird die finale Anwendung durch klicken und beobachten getestet, also das was Anwendende später sehen.\\E$"}
+{"rule":"EINES_GENITIV","sentence":"^\\QDie Erstellung eines Prime-Theme\\E$"}

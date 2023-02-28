@@ -3,3 +3,17 @@ WIBAS
 Typescript-Framework
 Themeing
 Primeng-Frameworks
+Architecture
+Based
+Component
+KBA
+CBA
+CBA-Frameworks
+Komponentenbasis
+Backends
+Stubs
+Mocks
+Komponenten-States
+End-To-End-Testing
+End-To-End
+Asynchronous
